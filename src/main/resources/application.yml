@@ -1,0 +1,23 @@
+logging:
+  level:
+    root: info
+server:
+  port: 7777
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    master:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/frame
+      username: root
+      password: delaynomore
+    slave:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/lanyingflower
+      username: root
+      password: delaynomore
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 1
+      idle-timeout: 3000

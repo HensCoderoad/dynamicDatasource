@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dynamic.mapper.MoodDao">
+  <resultMap id="BaseResultMap" type="com.demo.dynamic.entity.Mood">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="indexd" jdbcType="INTEGER" property="indexd" />
+    <result column="pubdate" jdbcType="TIMESTAMP" property="pubdate" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="mood_type" jdbcType="INTEGER" property="moodType" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content, image, indexd, pubdate, title, mood_type, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mood
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mood
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.demo.dynamic.entity.Mood" useGeneratedKeys="true">
+    insert into mood (content, image, indexd, 
+      pubdate, title, mood_type, 
+      url)
+    values (#{content,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{indexd,jdbcType=INTEGER}, 
+      #{pubdate,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{moodType,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.demo.dynamic.entity.Mood" useGeneratedKeys="true">
+    insert into mood
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="content != null">
+        content,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="indexd != null">
+        indexd,
+      </if>
+      <if test="pubdate != null">
+        pubdate,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="moodType != null">
+        mood_type,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="indexd != null">
+        #{indexd,jdbcType=INTEGER},
+      </if>
+      <if test="pubdate != null">
+        #{pubdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="moodType != null">
+        #{moodType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.dynamic.entity.Mood">
+    update mood
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="indexd != null">
+        indexd = #{indexd,jdbcType=INTEGER},
+      </if>
+      <if test="pubdate != null">
+        pubdate = #{pubdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="moodType != null">
+        mood_type = #{moodType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.dynamic.entity.Mood">
+    update mood
+    set content = #{content,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      indexd = #{indexd,jdbcType=INTEGER},
+      pubdate = #{pubdate,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      mood_type = #{moodType,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
